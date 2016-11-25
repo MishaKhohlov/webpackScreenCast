@@ -1,0 +1,36 @@
+{
+  "name": "Knubisoft",
+  "version": "1.0.0",
+  "description": "Knubisoft project ",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp",
+    "compass": "gem install compass"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Knubisoft",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "babel-core": "^6.17.0",
+    "babel-loader": "latest",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "latest",
+    "babel-preset-es2016": "^6.16.0",
+    "babel-preset-es2017": "^6.16.0",
+    "babel-runtime": "^6.18.0",
+    "webpack": "^1.13.3"
+  },
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "object-create": "^0.1.0"
+  }
+}
