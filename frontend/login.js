@@ -1,4 +1,4 @@
 module.exports = function () {
-  alert(213);
-}
+  console.log(213);
+};
 

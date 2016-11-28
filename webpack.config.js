@@ -5,9 +5,8 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 const webpack = require('webpack');
 const path = require('path');
 
-// module.exports = [{},{},{}]
 module.exports = [
-  /*{
+  {
     context: __dirname + '/frontend',
     // common: ['./common.js', 'libs']
     // export in lib last dependency
@@ -58,7 +57,7 @@ module.exports = [
         }
       }]
     }
-  }*/ {
+  }, {
     context: __dirname + '/frontend',
 
     entry: {
