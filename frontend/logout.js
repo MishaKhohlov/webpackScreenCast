@@ -1,4 +1,3 @@
 module.exports = function () {
-  console.log('login');
+  console.log('logout');
 };
-
