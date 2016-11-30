@@ -38,6 +38,9 @@ module.exports = [
         name: 'common',
         minChunks: 3,
         chunks: ['home', 'about']
+      }),
+      new webpack.ProvidePlugin({
+        pluck: 'lodash/fp/pluck'
       })
     ],
 
@@ -46,18 +49,24 @@ module.exports = [
         test: /\.js$/,
         loader: ['babel'],
         // should be used
-        include: [
-          path.resolve(__dirname, '/'),
-        ],
+        include: __dirname + '/frontend',
         //should be used to exclude exceptions
-        exclude: '/(node_modules|bower_components)/',
+        exclude: [/bower_components/, /node_modules/],
         query: {
           presets: ['es2015', 'es2016', 'es2017']
           // plugins: ['transform-runtime']
         }
-      }]
+      }],
+      noParse: [/angular\/angular.js/]
+    },
+    // webpackScreenCast>webpack --profile --display-modules --display-reasons
+
+
+    external: {
+      // jquery: '$'
     }
-  }, {
+  }
+  /*, {
     context: __dirname + '/frontend',
 
     entry: {
@@ -92,7 +101,8 @@ module.exports = [
         }
       }]
     }
-  }];
+  }*/
+];
 
 if (NODE_ENV === 'build') {
   module.exports.plugins.push(
