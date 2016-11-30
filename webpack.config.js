@@ -45,63 +45,75 @@ module.exports = [
     ],
 
     module: {
-      loaders: [{
-        test: /\.js$/,
-        loader: ['babel'],
-        // should be used
-        include: __dirname + '/frontend',
-        //should be used to exclude exceptions
-        exclude: [/bower_components/, /node_modules/],
-        query: {
-          presets: ['es2015', 'es2016', 'es2017']
-          // plugins: ['transform-runtime']
+      loaders: [
+        {
+          test: /\.js$/,
+          loader: ['babel'],
+          // should be used
+          include: __dirname + '/frontend',
+          //should be used to exclude exceptions
+          exclude: [/bower_components/, /node_modules/],
+          query: {
+            presets: ['es2015', 'es2016', 'es2017']
+            // plugins: ['transform-runtime']
+          }
+        },
+        {
+          test: /old.js$/,
+          loader: 'imports-loader?workSettings=>{delay:500}!exports?Work'
         }
-      }],
+      ],
       noParse: [/angular\/angular.js/]
     },
     // webpackScreenCast>webpack --profile --display-modules --display-reasons
-
-
     external: {
       // jquery: '$'
+    },
+
+    resolve: {
+      root: __dirname + '/vendor',
+      alias: {
+        old: 'old/dist/old'
+      }
     }
+
   }
   /*, {
-    context: __dirname + '/frontend',
+   context: __dirname + '/frontend',
 
-    entry: {
-      app: './app.js'
-    },
-    output: {
-      path: __dirname + '/public/lazy/',
-      publicPath: '/webpackScreenCast/public/lazy/',
-      filename: '[name].js'
-    },
+   entry: {
+   app: './app.js'
+   },
+   output: {
+   path: __dirname + '/public/lazy/',
+   publicPath: '/webpackScreenCast/public/lazy/',
+   filename: '[name].js'
+   },
 
-    watchOptions: {
-      aggregateTimeout: 100
-    },
+   watchOptions: {
+   aggregateTimeout: 100
+   },
 
-    plugins: [
-      new webpack.NoErrorsPlugin()
-    ],
+   plugins: [
+   new webpack.NoErrorsPlugin()
+   ],
 
-    module: {
-      loaders: [{
-        test: /\.js$/,
-        loader: ['babel'],
-        // should be used
-        include: [
-          path.resolve(__dirname, '/'),
-        ],
-        //should be used to exclude exceptions
-        exclude: '/(node_modules|bower_components)/',
-        query: {
-          presets: ['es2015', 'es2016', 'es2017']
-        }
-      }]
-    }
-  }*/
+   module: {
+   loaders: [{
+   test: /\.js$/,
+   loader: ['babel'],
+   // should be used
+   include: [
+   path.resolve(__dirname, '/'),
+   ],
+   //should be used to exclude exceptions
+   exclude: '/(node_modules|bower_components)/',
+   query: {
+   presets: ['es2015', 'es2016', 'es2017']
+   }
+   }]
+   }
+   }*/
 ];
 
 if (NODE_ENV === 'build') {

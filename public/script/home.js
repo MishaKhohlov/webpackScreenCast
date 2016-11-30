@@ -5,7 +5,7 @@ webpackJsonp_name_([2],[
 
 	'use strict';
 	
-	var _welcome = __webpack_require__(4);
+	var _welcome = __webpack_require__(3);
 	
 	var _welcome2 = _interopRequireDefault(_welcome);
 	
@@ -19,8 +19,7 @@ webpackJsonp_name_([2],[
 /***/ },
 /* 1 */,
 /* 2 */,
-/* 3 */,
-/* 4 */
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

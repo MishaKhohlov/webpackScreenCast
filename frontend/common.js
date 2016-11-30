@@ -1,2 +1,5 @@
 'use strict';
-import angular from 'angular';
+
+let work = require('old');
+
+work();
