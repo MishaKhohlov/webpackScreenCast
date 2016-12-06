@@ -11,6 +11,6 @@ export  default class Menu {
   constructor(options) {
     this.elem = $('<div>', {
       class: 'my-class'
-    }).append(template);
+    }).append(template(options));
   }
 }

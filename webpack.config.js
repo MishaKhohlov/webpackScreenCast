@@ -4,6 +4,7 @@
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const webpack = require('webpack');
 const path = require('path');
+let ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   context: __dirname,
@@ -29,7 +30,8 @@ module.exports = {
       $: "jquery",
       jQuery: "jquery",
       "window.jQuery": "jquery"
-    })
+    }),
+    new ExtractTextPlugin("styles.css")
   ],
 
   module: {
@@ -45,11 +47,11 @@ module.exports = {
       },
       {
         test: /\.jade$/,
-        loader: 'pug-html-loader'
+        loader: 'pug-loader'
       },
       {
         test: /\.sass$/,
-        loader: "style!css!sass"
+        loader: ExtractTextPlugin.extract('style', 'css!resolve-url!sass?sourceMap')
       },
       {
         test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
@@ -57,7 +59,7 @@ module.exports = {
       }
     ],
     noParse: [/angular\/angular.js/]
-  },
+  }
   // webpackScreenCast>webpack --profile --display-modules --display-reasons
 };
 

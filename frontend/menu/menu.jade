@@ -1,12 +1,7 @@
--
-  var items = [
-    {text: 'Eggs', href: '#eggs'},
-    {text: 'Meat', href: '#eggs'},
-    {text: 'Bamboo', href: '#bamboo'}
-  ]
 
-span.my-class.title= 'title'
-ul.list
-  each item in items
-    li
-      a(href=item.href)= item.text
+div.cont
+  span.my-class.title= title
+  ul.list
+    each item in items
+      li
+        a(href=item.href)= item.text
