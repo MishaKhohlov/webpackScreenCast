@@ -7,6 +7,7 @@ const path = require('path');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
   context: __dirname,
@@ -16,7 +17,7 @@ module.exports = {
   },
   output: {
     path: __dirname + '/public/script/',
-    publicPath: './',
+    publicPath: '/',
     filename: '[name].[chunkhash].js',
     chunkFilename: '[id].[chunkhash].js',
     library: '[name]'
@@ -45,9 +46,16 @@ module.exports = {
     }),
     new ExtractTextPlugin('../assets/styles.[contenthash].css'),
     new HtmlWebpackPlugin({
-      filename: '../index.gen.html',
+      filename: '../index.html',
       template: './public/templateIndex/template.html',
       inject: false
+    }),
+    new BrowserSyncPlugin({
+      // browse to http://localhost:3000/ during development,
+      // ./public directory is being served
+      host: 'localhost',
+      port: 3000,
+      server: { baseDir: ['public'] }
     })
   ],
 
@@ -76,6 +84,11 @@ module.exports = {
       }
     ],
     noParse: [/angular\/angular.js/]
+    /*devServer: {
+      host: 'localhost',
+      port: 8080,
+      contentBase: __dirname + '/public/'
+    }*/
   }
   // webpackScreenCast>webpack --profile --display-modules --display-reasons
 };
