@@ -1,3 +1,4 @@
+var index =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -34,7 +35,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -10302,9 +10303,7 @@
 	
 	__webpack_require__(5);
 	
-	__webpack_require__(6);
-	
-	var _menu = __webpack_require__(11);
+	var _menu = __webpack_require__(6);
 	
 	var _menu2 = _interopRequireDefault(_menu);
 	
@@ -10327,35 +10326,25 @@
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__.p + "../assets/PTSansItalic.eot";
+	module.exports = __webpack_require__.p + "../assets/PTSansItalic.15c7b8.eot";
 
 /***/ },
 /* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__.p + "../assets/PTSansItalic.ttf";
+	module.exports = __webpack_require__.p + "../assets/PTSansItalic.9ce925.ttf";
 
 /***/ },
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__.p + "../assets/PTSansItalic.woff";
+	module.exports = __webpack_require__.p + "../assets/PTSansItalic.8c8ea2.woff";
 
 /***/ },
 /* 6 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var pug = __webpack_require__(12);
+	var pug = __webpack_require__(7);
 	
 	function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (items, title) {pug_html = pug_html + "\u003Cdiv class=\"cont\"\u003E\u003Cspan class=\"my-class title\"\u003E" + (pug.escape(null == (pug_interp = title) ? "" : pug_interp)) + "\u003C\u002Fspan\u003E\u003Cul class=\"list\"\u003E";
 	// iterate items
@@ -10380,7 +10369,7 @@
 	module.exports = template;
 
 /***/ },
-/* 12 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10613,7 +10602,7 @@
 	    throw err;
 	  }
 	  try {
-	    str = str || __webpack_require__(13).readFileSync(filename, 'utf8')
+	    str = str || __webpack_require__(8).readFileSync(filename, 'utf8')
 	  } catch (ex) {
 	    pug_rethrow(err, null, lineno)
 	  }
@@ -10640,11 +10629,11 @@
 
 
 /***/ },
-/* 13 */
+/* 8 */
 /***/ function(module, exports) {
 
 	/* (ignored) */
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=main.js.map
+//# sourceMappingURL=index.ef992ab37017adeae0ea.js.map

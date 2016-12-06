@@ -4,18 +4,30 @@
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const webpack = require('webpack');
 const path = require('path');
-let ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   context: __dirname,
-  entry: './frontend/index',
+  entry: {
+    index: './frontend/index',
+    styles: './frontend/index.sass'
+  },
   output: {
     path: __dirname + '/public/script/',
-    filename: '[name].js'
+    publicPath: './',
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[id].[chunkhash].js',
+    library: '[name]'
   },
   // watch: NODE_ENV === 'development',
   watchOptions: {
     aggregateTimeout: 100
+  },
+
+  resolve: {
+    extensions: ['', '.js', '.sass']
   },
 
   devtool: NODE_ENV === 'development' ? 'source-map' : null,
@@ -31,7 +43,12 @@ module.exports = {
       jQuery: "jquery",
       "window.jQuery": "jquery"
     }),
-    new ExtractTextPlugin("styles.css")
+    new ExtractTextPlugin('../assets/styles.[contenthash].css'),
+    new HtmlWebpackPlugin({
+      filename: '../index.gen.html',
+      template: './public/templateIndex/template.html',
+      inject: false
+    })
   ],
 
   module: {
@@ -55,7 +72,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
-        loader: 'file?name=../assets/[name].[ext]'
+        loader: 'file?name=../assets/[name].[hash:6].[ext]'
       }
     ],
     noParse: [/angular\/angular.js/]

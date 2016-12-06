@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+  <title>My App1</title>
+
+  <% for (var item in htmlWebpackPlugin.files.css) { %>
+  <link href="<%= htmlWebpackPlugin.files.css[item].slice(3, htmlWebpackPlugin.files.css[item].length) %>" rel="stylesheet">
+  <% } %>
+</head>
+<body>
+
+
+<div>
+  some content
+</div>
+
+
+<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+<script type="text/javascript" src="./script<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+<% } %>
+</body>
+</html>
