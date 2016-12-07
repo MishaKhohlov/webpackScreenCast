@@ -11,14 +11,16 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
   context: __dirname,
+
+  // 'webpack-dev-server/client?http://localhost:8080/', 'webpack/hot/only-dev-server',
   entry: {
-    index: ['webpack-dev-server/client?http://localhost:8080/', 'webpack/hot/only-dev-server', './frontend/index'],
+    index: ['./frontend/index'],
     styles: './frontend/index.sass'
   },
   output: {
-    path: __dirname + '/public/script/',
-    publicPath: '/',
-    filename: '[name].[hash].js',
+    path: __dirname + '/public',
+    // publicPath: '/',
+    filename: './script/[name].[hash].js',
     chunkFilename: '[id].[hash].js',
     library: '[name]'
   },
@@ -47,19 +49,29 @@ module.exports = {
       jQuery: "jquery",
       "window.jQuery": "jquery"
     }),
-    new ExtractTextPlugin('../assets/styles.[contenthash].css', {disable:  NODE_ENV === 'development'}),
+    // {disable:  NODE_ENV === 'development'}
+    new ExtractTextPlugin('./assets/styles.[contenthash].css', { allChunks: true, disable: false }),
     new HtmlWebpackPlugin({
-      filename: '../index.html',
+      filename: './index.html',
       template: './public/templateIndex/template.html',
       inject: false
     }),
-    new webpack.HotModuleReplacementPlugin()
+    // new webpack.HotModuleReplacementPlugin(),
+    new BrowserSyncPlugin({
+      host: 'localhost',
+      open: false,
+      port: 3000,
+      server: { baseDir: ['public'] }
+    })
+    // for work with webpack dev server
     // new BrowserSyncPlugin({
     //   // browse to http://localhost:3000/ during development,
     //   // ./public directory is being served
     //   host: 'localhost',
     //   port: 3000,
-    //   server: { baseDir: ['public'] }
+    //   proxy: 'http://localhost:8080/',
+    // }, {
+    //   reload: false
     // })
   ],
 
@@ -80,7 +92,7 @@ module.exports = {
       },
       {
         test: /\.sass$/,
-        loader: ExtractTextPlugin.extract('style', 'css!resolve-url!sass?sourceMap')
+        loader: ExtractTextPlugin.extract('style', 'css?sourceMap!resolve-url!sass?sourceMap')
       },
       {
         test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
@@ -88,13 +100,13 @@ module.exports = {
       }
     ],
     noParse: [/angular\/angular.js/],
-    devServer: {
-      host: 'localhost',
-      port: 8080,
-      contentBase: __dirname + '/public',
-      hot: true
-    }
-  }
+    // devServer: {
+    //   host: 'localhost',
+    //   port: 8080,
+    //   contentBase: __dirname + '/public',
+    //   hot: true
+    // }
+  },
   // webpackScreenCast>webpack --profile --display-modules --display-reasons
 };
 
