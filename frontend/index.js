@@ -1,12 +1,11 @@
 'use strict';
-
 import Menu from './menu/menu.js';
 
 let pandaMenu = new Menu({
-  title: 'Menu Panda!!',
+  title: 'Menu Panda!!!',
   items: [
     {text: 'Eggs', href: '#eggs'},
-    {text: 'Meat', href: '#eggs'},
+    {text: 'Meatt', href: '#eggs'},
     {text: 'Bamboo', href: '#bamboo'}
   ]
 });

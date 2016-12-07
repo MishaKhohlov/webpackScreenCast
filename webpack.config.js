@@ -12,17 +12,19 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 module.exports = {
   context: __dirname,
   entry: {
-    index: './frontend/index',
+    index: ['webpack-dev-server/client?http://localhost:8080/', './frontend/index'],
     styles: './frontend/index.sass'
   },
   output: {
     path: __dirname + '/public/script/',
     publicPath: '/',
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[id].[chunkhash].js',
+    filename: '[name].[hash].js',
+    chunkFilename: '[id].[hash].js',
     library: '[name]'
   },
+
   // watch: NODE_ENV === 'development',
+
   watchOptions: {
     aggregateTimeout: 100
   },
@@ -50,13 +52,14 @@ module.exports = {
       template: './public/templateIndex/template.html',
       inject: false
     }),
-    new BrowserSyncPlugin({
-      // browse to http://localhost:3000/ during development,
-      // ./public directory is being served
-      host: 'localhost',
-      port: 3000,
-      server: { baseDir: ['public'] }
-    })
+    new webpack.HotModuleReplacementPlugin()
+    // new BrowserSyncPlugin({
+    //   // browse to http://localhost:3000/ during development,
+    //   // ./public directory is being served
+    //   host: 'localhost',
+    //   port: 3000,
+    //   server: { baseDir: ['public'] }
+    // })
   ],
 
   module: {
@@ -83,12 +86,13 @@ module.exports = {
         loader: 'file?name=../assets/[name].[hash:6].[ext]'
       }
     ],
-    noParse: [/angular\/angular.js/]
-    /*devServer: {
+    noParse: [/angular\/angular.js/],
+    devServer: {
       host: 'localhost',
       port: 8080,
-      contentBase: __dirname + '/public/'
-    }*/
+      contentBase: __dirname + '/public',
+      hot: true
+    }
   }
   // webpackScreenCast>webpack --profile --display-modules --display-reasons
 };
