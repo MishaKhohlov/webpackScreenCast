@@ -5,7 +5,7 @@
   <title>My App12</title>
 
   <% for (var item in htmlWebpackPlugin.files.css) { %>
-  <link href="<%= htmlWebpackPlugin.files.css[item].slice(3, htmlWebpackPlugin.files.css[item].length) %>" rel="stylesheet">
+  <link href=".<%= htmlWebpackPlugin.files.css[item].slice(3, htmlWebpackPlugin.files.css[item].length) %>" rel="stylesheet">
   <% } %>
 </head>
 <body>
@@ -16,7 +16,7 @@
 </div>
 
 <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-<script type="text/javascript" src="./<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+<script type="text/javascript" src=".<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
 <% } %>
 </body>
 </html>

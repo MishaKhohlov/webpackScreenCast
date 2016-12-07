@@ -12,7 +12,7 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 module.exports = {
   context: __dirname,
   entry: {
-    index: ['webpack-dev-server/client?http://localhost:8080/', './frontend/index'],
+    index: ['webpack-dev-server/client?http://localhost:8080/', 'webpack/hot/only-dev-server', './frontend/index'],
     styles: './frontend/index.sass'
   },
   output: {
@@ -23,10 +23,10 @@ module.exports = {
     library: '[name]'
   },
 
-  // watch: NODE_ENV === 'development',
+  watch: NODE_ENV === 'development',
 
   watchOptions: {
-    aggregateTimeout: 100
+    aggregateTimeout: 300
   },
 
   resolve: {
@@ -36,6 +36,7 @@ module.exports = {
   devtool: NODE_ENV === 'development' ? 'source-map' : null,
 
   plugins: [
+    new webpack.OldWatchingPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       NODE_ENV: JSON.stringify(NODE_ENV),
@@ -46,7 +47,7 @@ module.exports = {
       jQuery: "jquery",
       "window.jQuery": "jquery"
     }),
-    new ExtractTextPlugin('../assets/styles.[contenthash].css'),
+    new ExtractTextPlugin('../assets/styles.[contenthash].css', {disable:  NODE_ENV === 'development'}),
     new HtmlWebpackPlugin({
       filename: '../index.html',
       template: './public/templateIndex/template.html',
