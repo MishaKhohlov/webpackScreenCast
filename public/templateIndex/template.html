@@ -15,8 +15,10 @@
   some content
 </div>
 
-<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-<script type="text/javascript" src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
-<% } %>
+<!--<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>-->
+<!--<script type="text/javascript" src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>-->
+<!--<% } %>-->
+<script type="text/javascript" src="<%= htmlWebpackPlugin.files.chunks.styles.entry %>"></script>
+<script type="text/javascript" src="<%= htmlWebpackPlugin.files.chunks.index.entry %>"></script>
 </body>
 </html>

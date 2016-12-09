@@ -14,7 +14,7 @@ module.exports = {
 
   // 'webpack-dev-server/client?http://localhost:8080/', 'webpack/hot/only-dev-server',
   entry: {
-    index: ['./frontend/index'],
+    index: ['webpack-dev-server/client?http://localhost:8080/', 'webpack/hot/only-dev-server', './frontend/index'],
     styles: './frontend/index.sass'
   },
   output: {
@@ -50,29 +50,29 @@ module.exports = {
       "window.jQuery": "jquery"
     }),
     // {disable:  NODE_ENV === 'development'}
-    new ExtractTextPlugin('./assets/styles.[contenthash].css', { allChunks: true, disable: false }),
+    new ExtractTextPlugin('./assets/styles.[contenthash].css', { allChunks: true}),
     new HtmlWebpackPlugin({
       filename: './index.html',
       template: './public/templateIndex/template.html',
       inject: false
     }),
-    // new webpack.HotModuleReplacementPlugin(),
-    new BrowserSyncPlugin({
+    new webpack.HotModuleReplacementPlugin(),
+    /*new BrowserSyncPlugin({
       host: 'localhost',
       open: false,
       port: 3000,
       server: { baseDir: ['public'] }
-    })
+    })*/
     // for work with webpack dev server
-    // new BrowserSyncPlugin({
-    //   // browse to http://localhost:3000/ during development,
-    //   // ./public directory is being served
-    //   host: 'localhost',
-    //   port: 3000,
-    //   proxy: 'http://localhost:8080/',
-    // }, {
-    //   reload: false
-    // })
+    /*new BrowserSyncPlugin({
+      // browse to http://localhost:3000/ during development,
+      // ./public directory is being served
+      host: 'localhost',
+      port: 3000,
+      proxy: 'http://localhost:8080/',
+    }, {
+      reload: false
+    })*/
   ],
 
   module: {
@@ -100,12 +100,12 @@ module.exports = {
       }
     ],
     noParse: [/angular\/angular.js/],
-    // devServer: {
-    //   host: 'localhost',
-    //   port: 8080,
-    //   contentBase: __dirname + '/public',
-    //   hot: true
-    // }
+    devServer: {
+      host: 'localhost',
+      port: 8080,
+      contentBase: __dirname + '/public',
+      hot: true
+    }
   },
   // webpackScreenCast>webpack --profile --display-modules --display-reasons
 };
